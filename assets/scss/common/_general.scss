@@ -18,17 +18,8 @@ main{
 }
 
 .container{
-	max-width: calc(1440px + 200px);
+	max-width: calc(var(--container) + var(--container-pad) * 2);
 	width: 100%;
 	margin: 0 auto;
-	padding: 0 100px;
-    @media (max-width: 1400px){
-        padding: 0 60px;
-    }
-	@media (max-width: 1280px){
-		padding: 0 40px;
-	}
-	@media (max-width: 600px){
-		padding: 0 20px;
-	}
+	padding: 0 var(--container-pad);
 }

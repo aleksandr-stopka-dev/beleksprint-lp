@@ -69,7 +69,7 @@
 
 Конфликты с темой (решить на этапе 2):
 - `--container` и `--section-y` в `_var.scss` заменены значениями макета (1320 / fluid 20–104); `.section-padding` в `_general.scss` берёт `--section-y`.
-- `.container` темы — `max-width: 1640px; padding: 0 100px`, макет — 1368 с полями 24/16. На этапе 2 переписать `.container` в `_general.scss` по макету (не создавая второй класс).
+- `.container` темы — `max-width: 1640px; padding: 0 100px`, макет — 1368 с полями 24/16. `.container` в `_general.scss` переписан на `--container` и `--container-pad` (`fluid(16,24)`), медиазапросы убраны.
 - Отступ секции в макете переключается на 980px скачком (104 → 20); `fluid(20,104)` даёт плавный переход, на 390 и 1440 значения совпадают с макетом.
 - Заголовки темы `font-weight: 500`, `Montserrat` на body; в макете h1/h2 — Montserrat 800, `letter-spacing: -0.02em`, `line-height: 1.06–1.08`, тело — Open Sans 16/1.5.
 

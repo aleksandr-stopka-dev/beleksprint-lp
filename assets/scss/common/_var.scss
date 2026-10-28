@@ -68,7 +68,7 @@ $bp-small:  600px;
     --sh-seg: 0 2px 8px rgba(0, 0, 0, .1);
 
     --container: 1320px;
-    --container-pad: 24px;
+    --container-pad: #{fluid(16, 24)};
     --section-y: #{fluid(20, 104)};
 
     --fs-h1: #{fluid(31, 50)};
