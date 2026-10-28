@@ -1,0 +1,35 @@
+@use 'sass:math';
+
+$bp-mobile: 860px;
+$bp-small:  600px;
+
+@mixin mobile {
+    @media (max-width: $bp-mobile) { @content; }
+}
+
+@mixin small {
+    @media (max-width: $bp-small) { @content; }
+}
+
+@function fluid($min-size, $max-size, $min-viewport: 390, $max-viewport: 1440) {
+    $slope: math.div($max-size - $min-size, $max-viewport - $min-viewport);
+    $intercept: math.div(math.round($min-size * 1000 - $slope * $min-viewport * 1000), 1000);
+    $slope-vw: math.div(math.round($slope * 100000), 1000);
+
+    @return clamp(#{$min-size}px, calc(#{$intercept}px + #{$slope-vw}vw), #{$max-size}px);
+}
+
+:root{
+    --container: 1360px;
+    --section-y: 60px;
+}
+
+.section-padding{
+    padding: var(--section-y) 0;
+    &.pt-0{
+        padding-top: 0;
+    }
+    &.pb-0{
+        padding-bottom: 0;
+    }
+}

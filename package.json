@@ -1,0 +1,11 @@
+{
+  "name": "theme",
+  "private": true,
+  "scripts": {
+    "build": "sass assets/scss/style.scss assets/css/style.css --no-source-map && sass assets/scss/style.scss assets/css/style.min.css --no-source-map --style=compressed",
+    "watch": "sass assets/scss/style.scss assets/css/style.css --no-source-map --watch"
+  },
+  "devDependencies": {
+    "sass": "^1.80.0"
+  }
+}

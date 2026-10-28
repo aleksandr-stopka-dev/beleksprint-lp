@@ -1,0 +1,34 @@
+body{
+	font-family: 'Montserrat', sans-serif;
+	&.is-locked{
+		overflow: hidden;
+	}
+}
+
+html{
+	height: 100%;
+}
+body{
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+main{
+	flex: 1 1 auto;
+}
+
+.container{
+	max-width: calc(1440px + 200px);
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 100px;
+    @media (max-width: 1400px){
+        padding: 0 60px;
+    }
+	@media (max-width: 1280px){
+		padding: 0 40px;
+	}
+	@media (max-width: 600px){
+		padding: 0 20px;
+	}
+}
