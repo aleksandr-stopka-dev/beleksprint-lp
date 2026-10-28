@@ -1,20 +1,16 @@
 @import './common/reset';
 
-//Dependencies
 @import './common/var';
 @import './common/fonts';
 
-//Main
 @import './common/general';
 @import './common/header';
 @import './common/footer';
 
-//Modules
 @import './modules/typography';
 @import './modules/btn';
 @import './modules/field';
 @import './modules/checkbox';
 
-//Front
 @import './pages/front/hero';
 @import './pages/ui-kit';

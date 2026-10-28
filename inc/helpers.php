@@ -18,8 +18,10 @@ function theme_asset_ver($file) {
 
 function theme_srcset($img) {
     $srcset = [];
-    foreach (['thumbnail', 'medium', 'medium_large', 'large', '1536x1536', '2048x2048'] as $size) {
-        $w = $img['sizes'][$size . '-width'] ?? 0;
+    foreach (array_keys($img['sizes'] ?? []) as $key) {
+        if (!str_ends_with($key, '-width')) continue;
+        $size = substr($key, 0, -6);
+        $w = $img['sizes'][$key];
         $u = $img['sizes'][$size] ?? '';
         if ($w && $u) $srcset[(int) $w] = $u . ' ' . (int) $w . 'w';
     }
@@ -28,11 +30,6 @@ function theme_srcset($img) {
     return count($srcset) > 1 ? implode(', ', $srcset) : '';
 }
 
-/**
- * <img> from an ACF image array (return format: Image Array).
- * Always outputs width/height (no CLS), srcset for rasters, plain <img> for SVG.
- * $lazy = false marks the LCP image: eager + fetchpriority=high.
- */
 function theme_image($img, $class = '', $sizes = '100vw', $lazy = true) {
     if (empty($img) || !is_array($img) || empty($img['url'])) return '';
 
@@ -72,7 +69,6 @@ function theme_thumb($post_id, $class = '', $sizes = '100vw', $lazy = true) {
     return theme_image(acf_get_attachment($id), $class, $sizes, $lazy);
 }
 
-/** Back-compat wrapper: $size_attr like '800px' is used as the sizes attribute. */
 function get_wp_srcset_img($img, $class = '', $size_attr = '800px', $is_lazy = true) {
     return theme_image($img, $class, $size_attr, $is_lazy);
 }

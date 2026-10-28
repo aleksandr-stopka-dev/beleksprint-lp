@@ -1,10 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 
-// Theme/plugin editor in wp-admin is a ready-made RCE for a stolen admin session.
 if ( ! defined('DISALLOW_FILE_EDIT') ) define('DISALLOW_FILE_EDIT', true);
-
-/* ---------- response headers ---------- */
 
 add_action('send_headers', function() {
     header('X-Content-Type-Options: nosniff');
@@ -13,8 +10,6 @@ add_action('send_headers', function() {
     header('Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()');
     if ( is_ssl() ) header('Strict-Transport-Security: max-age=31536000');
 });
-
-/* ---------- user enumeration ---------- */
 
 add_action('template_redirect', function() {
     if ( is_author() || isset($_GET['author']) ) {
@@ -40,8 +35,6 @@ add_filter('oembed_response_data', function($data) {
     unset($data['author_name'], $data['author_url']);
     return $data;
 });
-
-/* ---------- login, xml-rpc, application passwords ---------- */
 
 add_filter('login_errors', function() {
     return 'Неверный логин или пароль.';

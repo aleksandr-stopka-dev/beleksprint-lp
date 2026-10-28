@@ -1,8 +1,6 @@
 <?php
 defined('ABSPATH') || exit;
 
-/* ---------- <head>, headers, feeds ---------- */
-
 add_action('init', function() {
     remove_action('wp_head', 'wp_generator');
     remove_action('wp_head', 'rsd_link');
@@ -34,8 +32,6 @@ add_action('send_headers', function() {
     header_remove('X-Powered-By');
 });
 
-/* ---------- emoji ---------- */
-
 add_action('init', function() {
     remove_action('wp_head', 'print_emoji_detection_script', 7);
     remove_action('admin_print_scripts', 'print_emoji_detection_script');
@@ -53,8 +49,6 @@ add_action('init', function() {
 
     add_filter('emoji_svg_url', '__return_false');
 });
-
-/* ---------- block / global styles, inline SVG filters ---------- */
 
 add_action('init', function() {
     remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
@@ -90,12 +84,9 @@ add_action('wp_footer', function() {
     wp_dequeue_style('core-block-supports');
 });
 
-/* ---------- scripts: heartbeat, jquery-migrate (its console message) ---------- */
-
 add_action('wp_enqueue_scripts', function() {
     wp_deregister_script('heartbeat');
 
-    // No jQuery on the front: scripts that list it as a dependency are dropped by WP instead of loading broken.
     wp_deregister_script('jquery');
     wp_deregister_script('jquery-core');
     wp_deregister_script('jquery-migrate');
@@ -111,8 +102,6 @@ add_action('wp_default_scripts', function($scripts) {
         $scripts->registered['jquery']->deps = array_diff($scripts->registered['jquery']->deps, ['jquery-migrate']);
     }
 });
-
-/* ---------- misc ---------- */
 
 add_filter('wp_revisions_to_keep', function($num, $post) {
     return 3;
@@ -138,8 +127,6 @@ add_action('pre_ping', function(&$links) {
 
 add_filter('wpcf7_autop_or_not', '__return_false');
 
-/* ---------- comments & pings off (corporate site) ---------- */
-
 add_action('init', function() {
     foreach (['post', 'page'] as $type) {
         remove_post_type_support($type, 'comments');
@@ -150,8 +137,6 @@ add_action('init', function() {
 add_filter('comments_open', '__return_false', 20);
 add_filter('pings_open', '__return_false', 20);
 add_filter('comments_array', '__return_empty_array', 10);
-
-/* ---------- admin ---------- */
 
 if ( is_admin() ) {
     add_filter('acf/settings/remove_wp_meta', '__return_true');

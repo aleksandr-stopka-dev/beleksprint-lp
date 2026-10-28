@@ -25,12 +25,10 @@ function theme_svg_is_safe($svg) {
     if (!mb_check_encoding($svg, 'UTF-8') || strpos($svg, "\0") !== false) return false;
     if (!preg_match('/<svg[\s>]/i', $svg)) return false;
 
-    // Browsers decode entities in attribute values (jav&#x61;script:) - check what they will actually see.
     $decoded = $svg;
     for ($i = 0; $i < 3; $i++) {
         $decoded = html_entity_decode($decoded, ENT_QUOTES | ENT_HTML5, 'UTF-8');
     }
-    // Tabs/newlines inside URLs are stripped by the browser (java\tscript:).
     $squashed = preg_replace('/[\x00-\x20\x{00A0}]+/u', '', $decoded);
 
     $forbidden = [
@@ -76,7 +74,6 @@ add_filter('wp_handle_upload_prefilter', function($file) {
     return $file;
 });
 
-// WP can't read SVG dimensions: store them from width/height/viewBox so ACF and srcset helpers get real values.
 add_filter('wp_generate_attachment_metadata', function($metadata, $attachment_id) {
     if (get_post_mime_type($attachment_id) !== 'image/svg+xml') return $metadata;
 

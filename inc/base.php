@@ -14,6 +14,18 @@ add_action('after_setup_theme', function() {
         'header_menu' => 'Header menu',
         'footer_menu' => 'Footer menu',
     ]);
+
+    add_image_size('review', 400, 0);
+    add_image_size('review-2x', 800, 0);
+    add_image_size('review-thumb', 58, 0);
+    add_image_size('review-thumb-2x', 116, 0);
+    add_image_size('avatar', 48, 0);
+    add_image_size('avatar-2x', 96, 0);
+});
+
+add_filter('intermediate_image_sizes_advanced', function($sizes) {
+    unset($sizes['medium_large'], $sizes['1536x1536'], $sizes['2048x2048']);
+    return $sizes;
 });
 
 add_filter('show_admin_bar', '__return_false');

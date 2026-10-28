@@ -25,7 +25,7 @@
             "name": "logo",
             "aria-label": "",
             "type": "image",
-            "instructions": "Белый вариант для тёмной шапки и подвала. SVG.",
+            "instructions": "Белый вариант логотипа (SVG) для тёмной шапки и подвала. Размер 240×35 px.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -263,5 +263,5 @@
     "active": true,
     "description": "",
     "show_in_rest": false,
-    "modified": 1793204129
+    "modified": 1793204624
 }
