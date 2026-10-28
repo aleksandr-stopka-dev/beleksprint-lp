@@ -1,0 +1,34 @@
+.dark-bg{
+	--glow: none;
+
+	position: relative;
+	overflow: hidden;
+	background-color: var(--gr-hero);
+	color: var(--tx-inverse);
+
+	&::before{
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		background-image: var(--glow);
+		pointer-events: none;
+	}
+
+	&--dots::after{
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image: radial-gradient(rgba(255, 255, 255, .1) 1.2px, rgba(255, 255, 255, 0) 1.6px);
+		z-index: 0;
+		background-size: 18px 18px;
+		-webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 35%, #000 80%);
+		mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 35%, #000 80%);
+		pointer-events: none;
+	}
+
+	> *{
+		position: relative;
+		z-index: 1;
+	}
+}

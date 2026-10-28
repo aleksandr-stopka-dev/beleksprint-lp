@@ -1,0 +1,20 @@
+.hs{
+	@include mobile{
+		display: flex;
+		gap: 12px;
+		margin-inline: -16px;
+		padding: 0 16px 6px;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+
+		> *{
+			flex: 0 0 82%;
+			scroll-snap-align: start;
+		}
+
+		&::-webkit-scrollbar{
+			display: none;
+		}
+	}
+}

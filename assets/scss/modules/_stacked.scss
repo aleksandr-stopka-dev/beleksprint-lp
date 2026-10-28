@@ -1,0 +1,23 @@
+.stacked{
+	position: relative;
+	isolation: isolate;
+
+	&::before,
+	&::after{
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		border-radius: var(--r-card);
+	}
+
+	&::before{
+		background: var(--green-700);
+		transform: rotate(3deg) translate(10px, 6px);
+	}
+
+	&::after{
+		background: var(--gr-700);
+		transform: rotate(-2.5deg) translate(-8px, 8px);
+	}
+}

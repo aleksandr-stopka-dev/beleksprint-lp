@@ -1,0 +1,87 @@
+.hero{
+	--glow: radial-gradient(ellipse 680px 600px at 77% 52%, rgba(74, 140, 42, .42), rgba(74, 140, 42, 0) 70%), radial-gradient(ellipse 900px 600px at 100% 0%, rgba(255, 255, 255, .05), rgba(255, 255, 255, 0) 70%);
+
+	padding-block: fluid(40, 72) fluid(48, 80);
+}
+
+.hero__inner{
+	display: grid;
+	grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+	gap: fluid(20, 56);
+	align-items: center;
+
+	@include mobile{
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+.hero__content{
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	min-width: 0;
+}
+
+.hero__title{
+	margin: 0;
+	color: var(--tx-inverse);
+}
+
+.hero__text{
+	max-width: 580px;
+	margin: 0;
+	font-size: 18px;
+	line-height: 1.6;
+	color: #D3D7DB;
+}
+
+.hero__actions{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+
+	@include mobile{
+		display: none;
+	}
+
+	.btn--ghost{
+		min-height: 54px;
+		padding: 0 22px;
+		color: var(--tx-inverse);
+		font-size: 16px;
+		font-weight: 600;
+	}
+}
+
+.hero__facts{
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 24px;
+	max-width: 580px;
+	margin: 0;
+	padding: 18px 0 0;
+	border-top: 1px solid rgba(255, 255, 255, .16);
+	list-style: none;
+
+	@include mobile{
+		display: none;
+	}
+}
+
+.hero__fact{
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.hero__fact-value{
+	font-family: var(--ff-head);
+	font-size: 24px;
+	font-weight: 800;
+	color: var(--tx-inverse);
+}
+
+.hero__fact-label{
+	font-size: 14px;
+	color: var(--tx-on-dark-muted);
+}

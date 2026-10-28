@@ -93,3 +93,18 @@ function theme_logo($field = 'logo', $class = '') {
     }
     return theme_image($img, $class, '200px', false);
 }
+
+function theme_accent_text($text) {
+    $parts = preg_split('/\*([^*]+)\*/u', (string) $text, -1, PREG_SPLIT_DELIM_CAPTURE);
+    $html = '';
+    foreach ($parts as $index => $part) {
+        $escaped = esc_html($part);
+        $escaped = preg_replace('/(\d+–\d+%?)/u', '<span class="nowrap">$1</span>', $escaped);
+        $html .= $index % 2 ? '<span class="text-accent">' . $escaped . '</span>' : $escaped;
+    }
+    return $html;
+}
+
+function theme_mosaic() {
+    return '<span class="mosaic" aria-hidden="true">' . str_repeat('<span class="mosaic__cell"></span>', 9) . '</span>';
+}
