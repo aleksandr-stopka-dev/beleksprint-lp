@@ -481,7 +481,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .header__messengers a:hover {
   opacity: 0.85;
 }
-.header__messengers svg {
+.header__messengers img {
   display: block;
   width: 38px;
   height: 38px;

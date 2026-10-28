@@ -70,16 +70,16 @@
 			<div class="header__messengers">
 				<?php
 				$theme_messengers = [
-					'viber'    => [ 'Viber', 'icon-viber' ],
-					'whatsapp' => [ 'WhatsApp', 'icon-whatsapp' ],
-					'telegram' => [ 'Telegram', 'icon-telegram' ],
+					'viber'    => [ 'Viber', 'viber.svg' ],
+					'whatsapp' => [ 'WhatsApp', 'whatsapp.svg' ],
+					'telegram' => [ 'Telegram', 'tg.svg' ],
 				];
 				foreach ( $theme_messengers as $theme_field => $theme_item ) :
 					$theme_url = theme_opt( $theme_field );
 					if ( ! $theme_url ) continue;
 					?>
 					<a href="<?php echo esc_url( $theme_url, [ 'http', 'https', 'viber', 'whatsapp' ] ); ?>" aria-label="<?php echo esc_attr( $theme_item[0] ); ?>" target="_blank" rel="noopener noreferrer">
-						<?php echo theme_icon( $theme_item[1] ); ?>
+						<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/brand/' . $theme_item[1] ); ?>" alt="" width="38" height="38" decoding="async">
 					</a>
 				<?php endforeach; ?>
 			</div>
