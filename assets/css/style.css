@@ -670,6 +670,15 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   color: var(--tx-on-dark-soft);
 }
 
+.footer__legal-link {
+  color: var(--tx-inverse);
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+.footer__legal-link:hover {
+  text-decoration: underline;
+}
+
 .footer__legal-title {
   font-family: var(--ff-head);
   font-size: 15px;

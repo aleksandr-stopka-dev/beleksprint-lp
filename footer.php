@@ -29,7 +29,7 @@
 			<p>
 				<?php echo esc_html( theme_opt( 'address' ) ); ?>
 				<?php if ( theme_opt( 'address' ) && theme_opt( 'email' ) ) echo ' · '; ?>
-				<?php echo esc_html( theme_opt( 'email' ) ); ?>
+				<a class="footer__legal-link" href="<?php echo esc_attr( 'mailto:' . theme_opt( 'email' ) ); ?>"><?php echo esc_html( theme_opt( 'email' ) ); ?></a>
 			</p>
 		</div>
 	</div>
