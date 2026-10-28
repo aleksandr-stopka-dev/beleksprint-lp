@@ -1,25 +1,102 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-    <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <?php wp_head(); ?>
+	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-	<header class="header">
-		<div class="container">
-			<div class="header__inner">
-				<div class="header__logo">
-					<?php if ( !is_front_page() ) : ?>
-						<a href="<?php echo esc_url( home_url('/') ); ?>">
+
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<div class="topbar">
+	<div class="container topbar__inner">
+		<span><?php echo esc_html( theme_opt( 'header_topbar_left' ) ); ?></span>
+		<span class="topbar__right"><?php echo esc_html( theme_opt( 'header_topbar_right' ) ); ?></span>
+	</div>
+</div>
+
+<header class="header" data-header>
+	<div class="header__top">
+		<div class="container header__inner">
+			<a class="header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Beleksprint — на главную">
+				<?php echo theme_logo( 'logo' ); ?>
+			</a>
+
+			<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню" data-nav-toggle>
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+
+			<?php if ( theme_opt( 'header_pill' ) ) : ?>
+				<span class="header__pill"><?php echo esc_html( theme_opt( 'header_pill' ) ); ?></span>
+			<?php endif; ?>
+
+			<?php if ( theme_opt( 'email' ) ) : ?>
+				<a class="header__email" href="<?php echo esc_attr( 'mailto:' . theme_opt( 'email' ) ); ?>">
+					<span class="header__icon" aria-hidden="true">
+						<svg width="20" height="20" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					</span>
+					<span class="header__email-body">
+						<strong class="header__email-value"><?php echo esc_html( theme_opt( 'email' ) ); ?></strong>
+						<?php if ( theme_opt( 'header_email_note' ) ) : ?>
+							<span class="header__email-note"><?php echo esc_html( theme_opt( 'header_email_note' ) ); ?></span>
+						<?php endif; ?>
+					</span>
+				</a>
+			<?php endif; ?>
+
+			<?php if ( theme_opt( 'phone' ) ) : ?>
+				<div class="manager">
+					<?php if ( theme_opt( 'manager_photo' ) ) : ?>
+						<span class="manager__avatar">
+							<?php echo theme_image( theme_opt( 'manager_photo' ), 'manager__photo', '46px', false ); ?>
+						</span>
 					<?php endif; ?>
-						<?php echo theme_logo('logo'); ?>
-					<?php if ( !is_front_page() ) : ?>
-						</a>
-					<?php endif; ?>
+					<span class="manager__info">
+						<a class="manager__phone" href="<?php echo esc_attr( 'tel:' . preg_replace( '/[^\d+]/', '', theme_opt( 'phone' ) ) ); ?>"><?php echo esc_html( theme_opt( 'phone' ) ); ?></a>
+						<span class="manager__status">
+							<?php echo esc_html( theme_opt( 'manager_status' ) ); ?>
+							<?php if ( theme_opt( 'manager_callback' ) ) : ?>
+								· <a class="manager__callback" href="<?php echo esc_url( home_url( '/#contacts' ) ); ?>"><?php echo esc_html( theme_opt( 'manager_callback' ) ); ?></a>
+							<?php endif; ?>
+						</span>
+					</span>
 				</div>
+			<?php endif; ?>
+
+			<div class="header__messengers">
+				<?php
+				$theme_messengers = [
+					'viber'    => [ 'Viber', 'viber.svg' ],
+					'whatsapp' => [ 'WhatsApp', 'whatsapp.svg' ],
+					'telegram' => [ 'Telegram', 'tg.svg' ],
+				];
+				foreach ( $theme_messengers as $theme_field => $theme_item ) :
+					$theme_url = theme_opt( $theme_field );
+					if ( ! $theme_url ) continue;
+					?>
+					<a href="<?php echo esc_url( $theme_url ); ?>" aria-label="<?php echo esc_attr( $theme_item[0] ); ?>" target="_blank" rel="noopener">
+						<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/brand/' . $theme_item[1] ); ?>" alt="" width="38" height="38">
+					</a>
+				<?php endforeach; ?>
 			</div>
 		</div>
-	</header>
+	</div>
+
+	<nav class="nav" id="site-nav" aria-label="Разделы" data-nav>
+		<div class="container">
+			<?php
+			wp_nav_menu( [
+				'theme_location' => 'header_menu',
+				'container'      => false,
+				'menu_class'     => 'nav__list',
+				'fallback_cb'    => false,
+			] );
+			?>
+		</div>
+	</nav>
+</header>

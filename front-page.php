@@ -2,7 +2,7 @@
 	get_header();
 ?>
 
-<main>
+<main id="main">
 	<?php get_template_part('pages/front/hero'); ?>
 </main>
 

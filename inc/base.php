@@ -53,3 +53,10 @@ add_filter('nav_menu_css_class', function($classes, $item, $args) {
 
     return $classes;
 }, 10, 3);
+
+add_filter('nav_menu_link_attributes', function($atts, $item) {
+    if (theme_is_anchor_item($item)) {
+        unset($atts['aria-current']);
+    }
+    return $atts;
+}, 10, 2);

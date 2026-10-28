@@ -84,6 +84,8 @@ function theme_link_parts($link) {
 
 function theme_logo($field = 'logo', $class = '') {
     $img = theme_opt($field);
-    if (!is_array($img) || empty($img['url'])) return '';
+    if (!is_array($img) || empty($img['url'])) {
+        return '<img src="' . esc_url(get_template_directory_uri() . '/assets/images/brand/logo-white.svg') . '" alt="Beleksprint" width="240" height="35" decoding="async">';
+    }
     return theme_image($img, $class, '200px', false);
 }

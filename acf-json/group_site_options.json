@@ -243,6 +243,264 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_so_tab_header",
+            "label": "Шапка и подвал",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_so_topbar_left",
+            "label": "Верхняя полоса, слева",
+            "name": "header_topbar_left",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Адрес производства и зона поставок.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_so_topbar_right",
+            "label": "Верхняя полоса, справа",
+            "name": "header_topbar_right",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Условия и график работы.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_so_pill",
+            "label": "Бейдж в шапке",
+            "name": "header_pill",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Показывается на планшете и десктопе.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_so_email_note",
+            "label": "Подпись под e-mail в шапке",
+            "name": "header_email_note",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_so_manager_photo",
+            "label": "Фото менеджера",
+            "name": "manager_photo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Квадрат 96×96 px. Alt-текст — имя менеджера.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "max_width": "",
+            "max_height": "",
+            "mime_types": "",
+            "min_size": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_so_manager_status",
+            "label": "Статус менеджера",
+            "name": "manager_status",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Например: Менеджер онлайн.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_so_manager_callback",
+            "label": "Ссылка «Перезвоните»",
+            "name": "manager_callback",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Текст ссылки; ведёт к блоку контактов.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_so_footer_about",
+            "label": "Описание в подвале",
+            "name": "footer_about",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_so_footer_legal_title",
+            "label": "Заголовок юридического блока",
+            "name": "footer_legal_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_so_footer_legal_text",
+            "label": "Текст юридического блока",
+            "name": "footer_legal_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_so_footer_copyright",
+            "label": "Копирайт",
+            "name": "footer_copyright",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_so_footer_policy",
+            "label": "Ссылка на политику конфиденциальности",
+            "name": "footer_policy",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
         }
     ],
     "location": [
@@ -263,5 +521,5 @@
     "active": true,
     "description": "",
     "show_in_rest": false,
-    "modified": 1793204624
+    "modified": 1793205045
 }
