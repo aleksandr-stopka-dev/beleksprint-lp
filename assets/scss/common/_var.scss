@@ -11,6 +11,18 @@ $bp-small:  600px;
     @media (max-width: $bp-small) { @content; }
 }
 
+@mixin visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
 @function fluid($min-size, $max-size, $min-viewport: 390, $max-viewport: 1440) {
     $slope: math.div($max-size - $min-size, $max-viewport - $min-viewport);
     $intercept: math.div(math.round($min-size * 1000 - $slope * $min-viewport * 1000), 1000);
@@ -34,12 +46,15 @@ $bp-small:  600px;
     --tx-on-dark: #D3D7DB;
     --tx-on-dark-muted: #B9BEC4;
     --tx-on-dark-soft: #A9AEB4;
+    --tx-inverse: #fff;
 
     --surface: #F4F5F2;
     --surface-white: #fff;
     --line: #E2E5DF;
     --line-input: #D5D9D2;
     --line-dashed: #B9C2B3;
+    --line-strong: #B9BEC4;
+    --line-on-dark: rgba(255, 255, 255, .55);
 
     --green-700: #3A7421;
     --green-600: #4A8C2A;
@@ -53,6 +68,7 @@ $bp-small:  600px;
     --berry-ic: #9A2870;
 
     --err: #FF8A80;
+    --err-tx: #B42318;
 
     --ff-head: 'Montserrat', sans-serif;
     --ff-body: 'Open Sans', system-ui, sans-serif;
