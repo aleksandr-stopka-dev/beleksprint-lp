@@ -266,14 +266,14 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   }
 }
 
-.topbar {
+.header__topbar {
   background: var(--gr-950);
   color: var(--tx-on-dark-muted);
   font-size: 13px;
   border-bottom: 1px solid var(--line-dark);
 }
 
-.topbar__inner {
+.header__topbar-inner {
   min-height: 38px;
   display: flex;
   flex-wrap: wrap;
@@ -284,7 +284,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 }
 
 @media (max-width: 860px) {
-  .topbar__right {
+  .header__topbar-terms {
     display: none;
   }
 }
@@ -366,6 +366,10 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   }
 }
 
+.header__icon svg {
+  width: 20px;
+  height: 20px;
+}
 .header__icon {
   flex-shrink: 0;
   display: flex;
@@ -477,7 +481,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .header__messengers a:hover {
   opacity: 0.85;
 }
-.header__messengers img {
+.header__messengers svg {
   display: block;
   width: 38px;
   height: 38px;

@@ -60,3 +60,10 @@ add_filter('nav_menu_link_attributes', function($atts, $item) {
     }
     return $atts;
 }, 10, 2);
+
+add_filter('wp_nav_menu_args', function($args) {
+    if ($args['items_wrap'] === '<ul id="%1$s" class="%2$s">%3$s</ul>') {
+        $args['items_wrap'] = '<ul class="%2$s">%3$s</ul>';
+    }
+    return $args;
+});

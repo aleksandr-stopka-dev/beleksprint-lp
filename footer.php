@@ -35,10 +35,10 @@
 	</div>
 
 	<div class="container footer__bottom">
-		<span><?php echo esc_html( theme_opt( 'footer_copyright' ) ); ?></span>
+		<span>© 2011–<?php echo esc_html( date( 'Y' ) ); ?> Beleksprint · upak-bel.ru</span>
 		<?php $theme_policy = theme_link_parts( theme_opt( 'footer_policy' ) ); ?>
 		<?php if ( $theme_policy ) : ?>
-			<a href="<?php echo esc_url( $theme_policy['url'] ); ?>" target="<?php echo esc_attr( $theme_policy['target'] ); ?>"><?php echo esc_html( $theme_policy['title'] ); ?></a>
+			<a href="<?php echo esc_url( $theme_policy['url'] ); ?>"<?php echo '_blank' === $theme_policy['target'] ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>><?php echo esc_html( $theme_policy['title'] ); ?></a>
 		<?php endif; ?>
 	</div>
 </footer>

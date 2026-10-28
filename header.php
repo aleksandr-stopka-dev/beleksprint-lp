@@ -6,19 +6,18 @@
 
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
+<body>
 
 <a class="skip-link" href="#main">Перейти к содержимому</a>
 
-<div class="topbar">
-	<div class="container topbar__inner">
-		<span><?php echo esc_html( theme_opt( 'header_topbar_left' ) ); ?></span>
-		<span class="topbar__right"><?php echo esc_html( theme_opt( 'header_topbar_right' ) ); ?></span>
-	</div>
-</div>
-
 <header class="header" data-header>
+	<div class="header__topbar">
+		<div class="container header__topbar-inner">
+			<p class="header__topbar-location">Производство: <?php echo esc_html( theme_opt( 'address' ) ); ?> · поставки по всей России и в страны ЕАЭС</p>
+			<p class="header__topbar-terms">Договор и безнал для юрлиц РФ · <?php echo esc_html( theme_opt( 'header_topbar_hours' ) ); ?> · заявки онлайн 24/7</p>
+		</div>
+	</div>
+
 	<div class="header__top">
 		<div class="container header__inner">
 			<a class="header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Beleksprint — на главную">
@@ -37,8 +36,8 @@
 
 			<?php if ( theme_opt( 'email' ) ) : ?>
 				<a class="header__email" href="<?php echo esc_attr( 'mailto:' . theme_opt( 'email' ) ); ?>">
-					<span class="header__icon" aria-hidden="true">
-						<svg width="20" height="20" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					<span class="header__icon">
+						<?php echo theme_icon( 'icon-email' ); ?>
 					</span>
 					<span class="header__email-body">
 						<strong class="header__email-value"><?php echo esc_html( theme_opt( 'email' ) ); ?></strong>
@@ -56,31 +55,31 @@
 							<?php echo theme_image( theme_opt( 'manager_photo' ), 'manager__photo', '46px', false ); ?>
 						</span>
 					<?php endif; ?>
-					<span class="manager__info">
+					<div class="manager__info">
 						<a class="manager__phone" href="<?php echo esc_attr( 'tel:' . preg_replace( '/[^\d+]/', '', theme_opt( 'phone' ) ) ); ?>"><?php echo esc_html( theme_opt( 'phone' ) ); ?></a>
-						<span class="manager__status">
+						<p class="manager__status">
 							<?php echo esc_html( theme_opt( 'manager_status' ) ); ?>
 							<?php if ( theme_opt( 'manager_callback' ) ) : ?>
 								· <a class="manager__callback" href="<?php echo esc_url( home_url( '/#contacts' ) ); ?>"><?php echo esc_html( theme_opt( 'manager_callback' ) ); ?></a>
 							<?php endif; ?>
-						</span>
-					</span>
+						</p>
+					</div>
 				</div>
 			<?php endif; ?>
 
 			<div class="header__messengers">
 				<?php
 				$theme_messengers = [
-					'viber'    => [ 'Viber', 'viber.svg' ],
-					'whatsapp' => [ 'WhatsApp', 'whatsapp.svg' ],
-					'telegram' => [ 'Telegram', 'tg.svg' ],
+					'viber'    => [ 'Viber', 'icon-viber' ],
+					'whatsapp' => [ 'WhatsApp', 'icon-whatsapp' ],
+					'telegram' => [ 'Telegram', 'icon-telegram' ],
 				];
 				foreach ( $theme_messengers as $theme_field => $theme_item ) :
 					$theme_url = theme_opt( $theme_field );
 					if ( ! $theme_url ) continue;
 					?>
-					<a href="<?php echo esc_url( $theme_url ); ?>" aria-label="<?php echo esc_attr( $theme_item[0] ); ?>" target="_blank" rel="noopener">
-						<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/brand/' . $theme_item[1] ); ?>" alt="" width="38" height="38">
+					<a href="<?php echo esc_url( $theme_url, [ 'http', 'https', 'viber', 'whatsapp' ] ); ?>" aria-label="<?php echo esc_attr( $theme_item[0] ); ?>" target="_blank" rel="noopener noreferrer">
+						<?php echo theme_icon( $theme_item[1] ); ?>
 					</a>
 				<?php endforeach; ?>
 			</div>

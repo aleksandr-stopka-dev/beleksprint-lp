@@ -262,46 +262,6 @@
             "endpoint": 0
         },
         {
-            "key": "field_so_topbar_left",
-            "label": "Верхняя полоса, слева",
-            "name": "header_topbar_left",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Адрес производства и зона поставок.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_so_topbar_right",
-            "label": "Верхняя полоса, справа",
-            "name": "header_topbar_right",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Условия и график работы.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_so_pill",
             "label": "Бейдж в шапке",
             "name": "header_pill",
@@ -467,26 +427,6 @@
             "new_lines": ""
         },
         {
-            "key": "field_so_footer_copyright",
-            "label": "Копирайт",
-            "name": "footer_copyright",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_so_footer_policy",
             "label": "Ссылка на политику конфиденциальности",
             "name": "footer_policy",
@@ -501,6 +441,26 @@
                 "id": ""
             },
             "return_format": "array"
+        },
+        {
+            "key": "field_so_topbar_hours",
+            "label": "Время работы в верхней полосе",
+            "name": "header_topbar_hours",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Например: Пн–Пт 9:00–17:30.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -521,5 +481,5 @@
     "active": true,
     "description": "",
     "show_in_rest": false,
-    "modified": 1793205045
+    "modified": 1793207150
 }

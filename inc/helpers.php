@@ -82,6 +82,10 @@ function theme_link_parts($link) {
     ];
 }
 
+function theme_icon($name, $class = '') {
+    return '<svg' . ($class ? ' class="' . esc_attr($class) . '"' : '') . ' aria-hidden="true" focusable="false"><use href="' . esc_url(get_template_directory_uri() . '/assets/icons/sprite.svg#' . $name) . '"></use></svg>';
+}
+
 function theme_logo($field = 'logo', $class = '') {
     $img = theme_opt($field);
     if (!is_array($img) || empty($img['url'])) {

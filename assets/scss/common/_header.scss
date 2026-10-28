@@ -17,14 +17,14 @@
 	}
 }
 
-.topbar{
+.header__topbar{
 	background: var(--gr-950);
 	color: var(--tx-on-dark-muted);
 	font-size: 13px;
 	border-bottom: 1px solid var(--line-dark);
 }
 
-.topbar__inner{
+.header__topbar-inner{
 	min-height: 38px;
 	display: flex;
 	flex-wrap: wrap;
@@ -34,7 +34,7 @@
 	padding-block: 6px;
 }
 
-.topbar__right{
+.header__topbar-terms{
 	@include mobile{
 		display: none;
 	}
@@ -114,6 +114,10 @@
 }
 
 .header__icon{
+	svg{
+		width: 20px;
+		height: 20px;
+	}
 	flex-shrink: 0;
 	display: flex;
 	align-items: center;
@@ -221,7 +225,7 @@
 			opacity: .85;
 		}
 	}
-	img{
+	svg{
 		display: block;
 		width: 38px;
 		height: 38px;
