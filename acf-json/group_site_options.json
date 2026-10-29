@@ -461,6 +461,90 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_so_tab_seo",
+            "label": "SEO",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_so_seo_title",
+            "label": "Заголовок главной (title)",
+            "name": "seo_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Показывается в выдаче и на вкладке браузера.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 70,
+            "allow_in_bubble": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_so_seo_description",
+            "label": "Описание сайта (description)",
+            "name": "seo_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "До 160 символов. Используется на главной и как описание по умолчанию.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": 200,
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_so_og_image",
+            "label": "Картинка для соцсетей (OG)",
+            "name": "og_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "1200×630 px, JPG или PNG.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp",
+            "preview_size": "medium"
         }
     ],
     "location": [
@@ -481,5 +565,5 @@
     "active": true,
     "description": "",
     "show_in_rest": false,
-    "modified": 1793207150
+    "modified": 1793257806
 }

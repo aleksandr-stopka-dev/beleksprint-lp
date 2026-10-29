@@ -1,3 +1,5 @@
+import { markStart, sendForm } from '../core/send-form.js';
+
 const showError = (field, text) => {
     const input = field.querySelector('input, textarea');
     const error = field.querySelector('.field__error');
@@ -23,6 +25,8 @@ const initContactsForm = (form) => {
     const consentLabel = consent.closest('.check');
     const consentError = form.querySelector('[data-form-error]');
     const status = form.querySelector('[data-form-status]');
+    const typeInput = form.elements.type;
+    markStart(form, form.elements.started);
     const labels = { question: 'Отправить вопрос', call: 'Жду звонка' };
     const requiredFields = [...form.querySelectorAll('.field:has(input[required])')];
 
@@ -30,6 +34,7 @@ const initContactsForm = (form) => {
         typeButtons.forEach((button) => {
             button.setAttribute('aria-pressed', String(button.dataset.formType === type));
         });
+        typeInput.value = type;
         question.hidden = type !== 'question';
         submit.textContent = labels[type];
         status.hidden = true;
@@ -45,7 +50,7 @@ const initContactsForm = (form) => {
         consentError.hidden = true;
     });
 
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
         status.hidden = true;
 
@@ -64,6 +69,24 @@ const initContactsForm = (form) => {
         if (!consent.checked) valid = false;
 
         if (!valid) return;
+
+        submit.disabled = true;
+        form.setAttribute('aria-busy', 'true');
+        const result = await sendForm(form.getAttribute('action'), new FormData(form));
+        submit.disabled = false;
+        form.removeAttribute('aria-busy');
+
+        if (result.ok) {
+            form.reset();
+            selectType('question');
+        } else {
+            Object.entries(result.errors).forEach(([name, text]) => {
+                const field = form.elements[name]?.closest('.field');
+                if (field) showError(field, text);
+            });
+        }
+        status.textContent = result.message;
+        status.classList.toggle('form__status--error', !result.ok);
         status.hidden = false;
     });
 };

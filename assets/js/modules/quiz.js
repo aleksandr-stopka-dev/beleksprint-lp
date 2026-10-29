@@ -1,3 +1,5 @@
+import { markStart, sendForm } from '../core/send-form.js';
+
 const initQuiz = () => {
     const quiz = document.querySelector('[data-quiz]');
     if (!quiz) return;
@@ -15,6 +17,11 @@ const initQuiz = () => {
     };
     const selection = { product: null, quantity: null, print: null };
     const state = { step: 0, channel: channelButtons.find((b) => b.getAttribute('aria-pressed') === 'true')?.dataset.quizChannel ?? '' };
+
+    const trap = quiz.querySelector('[data-quiz-trap]');
+    const error = quiz.querySelector('[data-quiz-error]');
+    const started = { value: '' };
+    markStart(quiz, started);
 
     const lastStep = steps.length - 1;
     const choiceStep = { product: 0, quantity: 1, print: 2 };
@@ -80,6 +87,36 @@ const initQuiz = () => {
         contactInput.placeholder = button.dataset.fieldPlaceholder;
     };
 
+    const submit = async (button) => {
+        error.hidden = true;
+        button.disabled = true;
+        quiz.setAttribute('aria-busy', 'true');
+
+        const data = new FormData();
+        data.append('action', 'theme_form');
+        data.append('form_id', 'quiz');
+        data.append('started', started.value);
+        data.append('website', trap.value);
+        data.append('product', labelOf('product'));
+        data.append('quantity', labelOf('quantity'));
+        data.append('print', labelOf('print'));
+        data.append('channel', state.channel);
+        data.append('contact', contactInput.value.trim());
+        data.append('consent', consent.checked ? '1' : '');
+
+        const result = await sendForm(quiz.dataset.endpoint, data);
+        quiz.removeAttribute('aria-busy');
+        button.disabled = false;
+
+        if (result.ok) {
+            goTo(lastStep);
+            return;
+        }
+        error.textContent = result.errors.contact ?? result.message;
+        error.hidden = false;
+        if (result.errors.contact) contactInput.focus();
+    };
+
     const reset = () => {
         selection.product = null;
         selection.quantity = null;
@@ -87,6 +124,7 @@ const initQuiz = () => {
         ['product', 'quantity', 'print'].forEach(renderOptions);
         if (consent) consent.checked = false;
         contactInput.value = '';
+        error.hidden = true;
         goTo(0);
     };
 
@@ -109,7 +147,12 @@ const initQuiz = () => {
         }
 
         if (event.target.closest('[data-quiz-next]')) {
-            if (isStepReady(state.step)) goTo(state.step + 1);
+            if (!isStepReady(state.step)) return;
+            if (state.step === lastStep - 1) {
+                submit(event.target.closest('[data-quiz-next]'));
+                return;
+            }
+            goTo(state.step + 1);
             return;
         }
 

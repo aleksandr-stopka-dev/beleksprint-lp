@@ -44,7 +44,15 @@ $tabs = array(
 			</div>
 		</div>
 
-		<form class="form contacts__form" data-form novalidate>
+		<form class="form contacts__form" data-form action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" method="post" novalidate>
+			<input type="hidden" name="action" value="theme_form">
+			<input type="hidden" name="form_id" value="contacts">
+			<input type="hidden" name="type" value="question">
+			<input type="hidden" name="started" value="">
+			<div class="form__trap" aria-hidden="true">
+				<label>Не заполняйте <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+			</div>
+
 			<div class="form__tabs" role="group" aria-label="Тип обращения">
 				<?php
 				$first = true;
@@ -78,7 +86,7 @@ $tabs = array(
 
 			<button class="btn btn--primary form__submit" type="submit" data-form-submit>Отправить вопрос</button>
 			<p class="form__error" data-form-error hidden>Поставьте галочку согласия, чтобы отправить заявку.</p>
-			<p class="form__status" role="status" aria-live="polite" data-form-status hidden>Заявка принята — свяжемся в рабочее время.</p>
+			<p class="form__status" role="status" aria-live="polite" data-form-status hidden></p>
 		</form>
 	</div>
 </section>

@@ -105,5 +105,12 @@
 	&__status{
 		font-size: 13px;
 		color: var(--green-300);
+
+		&--error{
+			color: var(--err);
+		}
+	}
+	&__trap{
+		@include visually-hidden;
 	}
 }

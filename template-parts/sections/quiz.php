@@ -16,7 +16,10 @@ $channels   = array(
 	'mail' => array( 'label' => 'Почта', 'field' => 'Email', 'placeholder' => 'name@company.ru' ),
 );
 ?>
-<div class="quiz stacked" id="quiz" data-quiz>
+<div class="quiz stacked" id="quiz" data-quiz data-endpoint="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>">
+	<div class="quiz__trap" aria-hidden="true">
+		<label>Не заполняйте <input type="text" name="website" tabindex="-1" autocomplete="off" data-quiz-trap></label>
+	</div>
 	<div class="quiz__card">
 		<?php foreach ( array_slice( $steps, 0, 3 ) as $index => $title ) : ?>
 			<section class="quiz__step" data-quiz-step="<?php echo esc_attr( $index ); ?>"<?php echo 0 === $index ? '' : ' hidden'; ?>>
@@ -122,6 +125,7 @@ $channels   = array(
 				<button class="quiz__back" type="button" data-quiz-back>← Назад</button>
 				<button class="quiz__next" type="button" data-quiz-next disabled>Получить расчёт и скидку</button>
 			</div>
+			<p class="quiz__error" role="alert" data-quiz-error hidden></p>
 		</section>
 
 		<section class="quiz__step quiz__done" data-quiz-step="4" hidden aria-live="polite">

@@ -203,6 +203,14 @@
 			box-shadow: var(--sh-seg);
 		}
 	}
+	&__trap{
+		@include visually-hidden;
+	}
+	&__error{
+		margin-top: 12px;
+		font-size: 13px;
+		color: var(--err-tx);
+	}
 	&__done{
 		align-items: center;
 		padding: 24px 0;
