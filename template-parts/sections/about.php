@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 $metrics = get_field( 'about_metrics' ) ?: array();
 ?>
 <section class="about" aria-labelledby="about-title">
-	<div class="container">
+	<div class="container about__inner">
 		<div class="about__head">
 			<div class="about__heading">
 				<?php get_template_part( 'template-parts/components/eyebrow', null, array( 'text' => get_field( 'about_eyebrow' ) ) ); ?>

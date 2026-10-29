@@ -4,17 +4,15 @@
 	display: inline-flex;
 	align-items: center;
 	gap: 10px;
-	margin: 0;
 	font-family: var(--ff-head);
 	font-size: var(--fs-eyebrow);
 	font-weight: 700;
 	letter-spacing: .12em;
 	text-transform: uppercase;
 	color: var(--tx-muted);
-}
-
-.eyebrow--dark{
-	color: var(--tx-on-dark-muted);
+	&--dark{
+		color: var(--tx-on-dark-muted);
+	}
 }
 
 .mosaic{
@@ -22,11 +20,10 @@
 	grid-template-columns: repeat(3, 5px);
 	gap: 1px;
 	flex-shrink: 0;
-}
-
-.mosaic__cell{
-	height: 5px;
-	background: var(--gr-900);
+	&__cell{
+		height: 5px;
+		background: var(--gr-900);
+	}
 }
 
 @each $color in $mosaic {

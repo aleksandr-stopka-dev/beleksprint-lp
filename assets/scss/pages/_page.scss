@@ -1,0 +1,45 @@
+.page{
+	background: var(--surface-white);
+	&__inner{
+		display: flex;
+		flex-direction: column;
+		gap: fluid(20, 32);
+		max-width: 840px;
+	}
+	&__body{
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		font-size: 16px;
+		line-height: 1.65;
+		color: var(--tx-body);
+
+		h2{
+			margin-top: fluid(12, 20);
+			font-family: var(--ff-head);
+			font-size: fluid(20, 26);
+			font-weight: 800;
+			line-height: 1.2;
+			letter-spacing: -0.02em;
+			color: var(--gr-900);
+		}
+		ul,
+		ol{
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			padding-left: 24px;
+		}
+		ul{
+			list-style: disc;
+		}
+		ol{
+			list-style: decimal;
+		}
+		a{
+			color: var(--green-700);
+			text-decoration: underline;
+			text-underline-offset: 3px;
+		}
+	}
+}

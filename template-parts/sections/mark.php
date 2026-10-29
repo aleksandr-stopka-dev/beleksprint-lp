@@ -29,6 +29,7 @@ $steps = get_field( 'mark_steps' ) ?: array();
 				array(
 					'link'    => get_field( 'mark_link' ),
 					'variant' => 'primary',
+					'class'   => 'mark__button',
 				)
 			);
 			?>

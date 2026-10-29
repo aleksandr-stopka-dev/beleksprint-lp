@@ -11,7 +11,6 @@
 	font-weight: 700;
 	line-height: 1.2;
 	text-align: center;
-	text-decoration: none;
 	transition: filter var(--transition), opacity var(--transition);
 
 	svg{
@@ -30,53 +29,48 @@
 	@media (prefers-reduced-motion: reduce){
 		transition: none;
 	}
-}
-
-.btn--primary{
-	background: var(--grad-primary);
-	color: var(--tx-inverse);
-	box-shadow: var(--sh-btn);
-	&:hover{
-		filter: brightness(.92);
+	&--primary{
+		background: var(--grad-primary);
+		color: var(--tx-inverse);
+		box-shadow: var(--sh-btn);
+		&:hover{
+			filter: brightness(.92);
+		}
 	}
-}
-
-.btn--dark{
-	min-height: 46px;
-	padding: 0 20px;
-	background: var(--gr-900);
-	color: var(--tx-inverse);
-	font-size: 14px;
-	&:hover{
-		filter: brightness(1.1);
+	&--dark{
+		min-height: 46px;
+		padding: 0 20px;
+		background: var(--gr-900);
+		color: var(--tx-inverse);
+		font-size: 14px;
+		&:hover{
+			filter: brightness(1.1);
+		}
 	}
-}
-
-.btn--outline{
-	padding: 0 26px;
-	border: 1.5px solid var(--line-on-dark);
-	color: var(--tx-inverse);
-	font-weight: 600;
-	&:hover{
-		opacity: .85;
+	&--outline{
+		padding: 0 26px;
+		border: 1.5px solid var(--line-on-dark);
+		color: var(--tx-inverse);
+		font-weight: 600;
+		&:hover{
+			opacity: .85;
+		}
 	}
-}
-
-.btn--sm{
-	min-height: 46px;
-	padding: 0 20px;
-	font-size: 14px;
-}
-
-.btn--ghost{
-	min-height: 0;
-	padding: 0;
-	color: inherit;
-	font-weight: 600;
-	&:hover{
-		opacity: .85;
+	&--sm{
+		min-height: 46px;
+		padding: 0 20px;
+		font-size: 14px;
 	}
-	svg{
-		color: var(--green-300);
+	&--ghost{
+		min-height: 0;
+		padding: 0;
+		color: inherit;
+		font-weight: 600;
+		&:hover{
+			opacity: .85;
+		}
+		svg{
+			color: var(--green-300);
+		}
 	}
 }

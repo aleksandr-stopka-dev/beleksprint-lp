@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main>
+<main id="main">
 	<section class="page section-padding">
 		<div class="container">
 			<div class="page__inner">

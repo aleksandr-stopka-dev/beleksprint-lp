@@ -34,6 +34,7 @@ $facts = get_field( 'hero_facts' ) ?: array();
 						'variant'     => 'ghost',
 						'icon'        => 'icon-download',
 						'icon_before' => true,
+						'class'       => 'hero__button',
 					)
 				);
 				?>

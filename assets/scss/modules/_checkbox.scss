@@ -1,96 +1,77 @@
 .check{
+	--check-color: var(--tx-muted);
+	--check-border: var(--line-strong);
+	--check-border-hover: var(--tx-soft);
+	--check-bg: var(--surface-white);
+	--check-error: var(--err-tx);
+	--check-focus: var(--focus-light);
+	--check-mark: 0;
+	--check-outline: none;
+
 	display: flex;
 	align-items: flex-start;
 	gap: 10px;
 	font-size: 12.5px;
 	line-height: 1.5;
-	color: var(--tx-muted);
+	color: var(--check-color);
 	cursor: pointer;
 
-	a{
-		color: inherit;
-		text-decoration: underline;
-	}
-
-	&:has(.check__input:disabled){
+	&:has(&__input:disabled){
 		cursor: not-allowed;
 		opacity: .5;
 	}
-}
+	&__input{
+		@include visually-hidden;
+	}
+	&__box{
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 20px;
+		height: 20px;
+		margin-top: 1px;
+		border: 1.5px solid var(--check-border);
+		border-radius: 6px;
+		background: var(--check-bg);
+		color: var(--tx-inverse);
+		outline: var(--check-outline);
+		outline-offset: 2px;
+		transition: background-color var(--transition), border-color var(--transition);
 
-.check__input{
-	@include visually-hidden;
-}
-
-.check__box{
-	flex-shrink: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 20px;
-	height: 20px;
-	margin-top: 1px;
-	border: 1.5px solid var(--line-strong);
-	border-radius: 6px;
-	background: var(--surface-white);
-	color: var(--tx-inverse);
-	transition: background-color var(--transition), border-color var(--transition);
-
-	svg{
+		@media (prefers-reduced-motion: reduce){
+			transition: none;
+		}
+	}
+	&__icon{
 		width: 12px;
 		height: 12px;
-		opacity: 0;
+		opacity: var(--check-mark);
 	}
-
-	@media (prefers-reduced-motion: reduce){
-		transition: none;
+	&__link{
+		color: inherit;
+		text-decoration: underline;
 	}
-}
-
-.check:hover .check__input:not(:checked) + .check__box{
-	border-color: var(--tx-soft);
-}
-
-.check__input:checked + .check__box{
-	border-color: var(--green-700);
-	background: var(--green-700);
-
-	svg{
-		opacity: 1;
+	&--dark{
+		--check-color: var(--tx-on-dark-muted);
+		--check-border: var(--gr-700);
+		--check-border-hover: var(--tx-on-dark-soft);
+		--check-bg: var(--gr-800);
+		--check-error: var(--err);
+		--check-focus: var(--focus-dark);
 	}
-}
-
-.check__input:focus-visible + .check__box{
-	outline: 2px solid var(--focus-light);
-	outline-offset: 2px;
-}
-
-.check--error .check__box{
-	border-color: var(--err-tx);
-}
-
-.check--dark{
-	color: var(--tx-on-dark-muted);
-
-	.check__box{
-		border-color: var(--gr-700);
-		background: var(--gr-800);
+	&--error{
+		--check-border: var(--check-error);
 	}
-
-	&:hover .check__box{
-		border-color: var(--tx-on-dark-soft);
+	&:hover{
+		--check-border: var(--check-border-hover);
 	}
-
-	.check__input:checked + .check__box{
-		border-color: var(--green-700);
-		background: var(--green-700);
+	&:has(&__input:checked){
+		--check-border: var(--green-700);
+		--check-bg: var(--green-700);
+		--check-mark: 1;
 	}
-
-	.check__input:focus-visible + .check__box{
-		outline-color: var(--focus-dark);
-	}
-
-	&.check--error .check__box{
-		border-color: var(--err);
+	&:has(&__input:focus-visible){
+		--check-outline: 2px solid var(--check-focus);
 	}
 }

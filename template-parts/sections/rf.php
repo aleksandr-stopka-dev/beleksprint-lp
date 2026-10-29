@@ -21,7 +21,7 @@ $manager_photo = theme_opt( 'manager_photo' );
 				<?php foreach ( $steps as $index => $step ) : ?>
 					<li class="rf__step<?php echo $index === count( $steps ) - 1 ? ' rf__step--accent' : ''; ?>">
 						<span class="rf__step-head">
-							<span class="rf__num" aria-hidden="true"><?php echo esc_html( $index + 1 ); ?></span>
+							<span class="rf__num<?php echo $index === count( $steps ) - 1 ? ' rf__num--accent' : ''; ?>" aria-hidden="true"><?php echo esc_html( $index + 1 ); ?></span>
 							<span class="rf__step-tag"><?php echo esc_html( $step['tag'] ); ?></span>
 						</span>
 						<strong class="rf__step-title"><?php echo esc_html( $step['title'] ); ?></strong>
