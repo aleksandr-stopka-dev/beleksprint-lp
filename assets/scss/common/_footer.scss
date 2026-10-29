@@ -63,9 +63,11 @@
 	}
 	&__legal-link{
 		color: var(--tx-inverse);
+		text-decoration: underline;
+		text-underline-offset: 3px;
 		transition: opacity var(--transition);
 		&:hover{
-			text-decoration: underline;
+			opacity: .85;
 		}
 	}
 	&__legal-title{

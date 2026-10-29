@@ -86,7 +86,7 @@
 		</div>
 	</div>
 
-	<nav class="nav" id="site-nav" aria-label="Разделы" data-nav>
+	<nav class="nav" id="site-nav" aria-label="Основная навигация" data-nav>
 		<div class="container">
 			<?php
 			wp_nav_menu( [

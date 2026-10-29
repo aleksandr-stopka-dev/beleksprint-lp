@@ -8,5 +8,6 @@ initHeader();
 initQuiz();
 
 lazyInit('[data-tabs]', () => import('./modules/tabs.js'));
+lazyInit('.hs', () => import('./modules/scroll-regions.js'));
 lazyInit('[data-reviews]', () => import('./modules/reviews.js'));
 lazyInit('[data-form]', () => import('./modules/contacts-form.js'));

@@ -6,6 +6,10 @@
 		gap: fluid(20, 32);
 		max-width: 840px;
 	}
+	&__title{
+		font-size: fluid(22, 50);
+		overflow-wrap: break-word;
+	}
 	&__body{
 		display: flex;
 		flex-direction: column;

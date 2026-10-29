@@ -5,7 +5,7 @@
 		<div class="container">
 			<div class="page__inner">
 				<?php if ( get_the_title() ) : ?>
-				<h1 class="text-h1"><?php the_title(); ?></h1>
+				<h1 class="text-h1 page__title"><?php the_title(); ?></h1>
 				<?php endif; ?>
 
 				<div class="page__body">

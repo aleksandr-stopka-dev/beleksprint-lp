@@ -7,7 +7,7 @@
 			<?php endif; ?>
 		</div>
 
-		<nav class="footer__nav" aria-label="Разделы">
+		<nav class="footer__nav" aria-label="Навигация в подвале">
 			<strong class="footer__nav-title">Разделы</strong>
 			<?php
 			wp_nav_menu( [
