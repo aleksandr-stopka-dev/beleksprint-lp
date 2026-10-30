@@ -9,7 +9,7 @@ export const sendForm = async (endpoint, data) => {
         const response = await fetch(endpoint, { method: 'POST', body: data });
         const result = await response.json();
         return result.success
-            ? { ok: true, message: result.data.message }
+            ? { ok: true, message: result.data.message, redirect: result.data.redirect ?? '' }
             : { ok: false, message: result.data?.message ?? 'Не удалось отправить. Позвоните нам.', errors: result.data?.errors ?? {} };
     } catch {
         return { ok: false, message: 'Ошибка сети. Попробуйте ещё раз.', errors: {} };

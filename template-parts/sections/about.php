@@ -16,9 +16,10 @@ $metrics = get_field( 'about_metrics' ) ?: array();
 		<?php if ( $metrics ) : ?>
 			<ul class="about__metrics">
 				<?php foreach ( $metrics as $metric ) : ?>
+					<?php $value = preg_match( '/^([\d\s.,+]+?)\s+(\D.*)$/u', $metric['value'], $parts ) ? $parts : array( $metric['value'], $metric['value'], '' ); ?>
 					<li class="metric">
 						<span class="metric__icon"><?php echo theme_icon( 'icon-' . $metric['icon'] ); ?></span>
-						<strong class="metric__value"><?php echo esc_html( $metric['value'] ); ?></strong>
+						<strong class="metric__value"><?php echo esc_html( $value[1] ); ?><?php echo $value[2] ? ' <span class="metric__unit">' . esc_html( $value[2] ) . '</span>' : ''; ?></strong>
 						<span class="metric__label"><?php echo esc_html( $metric['label'] ); ?></span>
 					</li>
 				<?php endforeach; ?>

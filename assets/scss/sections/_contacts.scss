@@ -62,20 +62,49 @@
 		border-radius: 26px;
 		background: var(--gr-900);
 		color: var(--tx-inverse);
+
+		@include mobile{
+			padding: 18px 14px;
+		}
 	}
 }
 
 .form{
 	&__tabs{
+		position: relative;
+		isolation: isolate;
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 4px;
 		padding: 4px;
 		border-radius: 14px;
 		background: var(--gr-800);
+
+		&::before{
+			content: '';
+			position: absolute;
+			z-index: -1;
+			top: 4px;
+			bottom: 4px;
+			left: 4px;
+			width: calc((100% - 12px) / 2);
+			border-radius: 11px;
+			background: var(--surface-white);
+			box-shadow: var(--sh-seg);
+			transition: transform .4s cubic-bezier(.22, .8, .3, 1);
+
+			@media (prefers-reduced-motion: reduce){
+				transition: none;
+			}
+		}
+
+		&:has(.form__tab:last-child[aria-pressed='true'])::before{
+			transform: translateX(calc(100% + 4px));
+		}
 	}
 	&__tab{
 		min-height: 46px;
+		padding: 0 12px;
 		border-radius: 11px;
 		background: transparent;
 		font-family: var(--ff-head);
@@ -83,11 +112,47 @@
 		font-weight: 700;
 		color: var(--tx-on-dark-muted);
 		cursor: pointer;
+		transition: color .3s ease;
+
+		@include mobile{
+			padding: 0 10px;
+			font-size: 13px;
+		}
+
+		@media (prefers-reduced-motion: reduce){
+			transition: none;
+		}
+
+		&:hover{
+			color: var(--tx-inverse);
+		}
 
 		&[aria-pressed='true']{
-			background: var(--surface-white);
 			color: #1E2023;
 		}
+	}
+	&__collapse{
+		display: grid;
+		grid-template-rows: 1fr;
+		transition: grid-template-rows .4s cubic-bezier(.22, .8, .3, 1), opacity .3s ease .1s, margin-top .4s cubic-bezier(.22, .8, .3, 1);
+
+		@media (prefers-reduced-motion: reduce){
+			transition: none;
+		}
+
+		&.is-collapsed{
+			grid-template-rows: 0fr;
+			margin-top: -12px;
+			opacity: 0;
+			visibility: hidden;
+			transition: grid-template-rows .4s cubic-bezier(.22, .8, .3, 1), opacity .2s ease, margin-top .4s cubic-bezier(.22, .8, .3, 1), visibility 0s .4s;
+		}
+	}
+	&__collapse-inner{
+		min-height: 0;
+		margin: -4px;
+		padding: 4px;
+		overflow: clip;
 	}
 	&__consent{
 		margin-top: 4px;

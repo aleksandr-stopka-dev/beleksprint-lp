@@ -6,6 +6,7 @@
 @import './common/general';
 @import './common/header';
 @import './common/footer';
+@import './common/fab';
 
 @import './modules/typography';
 @import './modules/btn';
@@ -21,7 +22,6 @@
 @import './sections/quiz';
 @import './sections/about';
 @import './sections/catalog';
-@import './sections/mark';
 @import './sections/rf';
 @import './sections/why';
 @import './sections/reviews';
@@ -29,3 +29,4 @@
 
 @import './modules/hs';
 @import './pages/page';
+@import './pages/thanks';

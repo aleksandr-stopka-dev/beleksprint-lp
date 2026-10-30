@@ -10,14 +10,21 @@
 
 <a class="skip-link" href="#main">Перейти к содержимому</a>
 
-<header class="header" data-header>
-	<div class="header__topbar">
-		<div class="container header__topbar-inner">
-			<p class="header__topbar-location">Производство: <?php echo esc_html( theme_opt( 'address' ) ); ?> · поставки по всей России и в страны ЕАЭС</p>
-			<p class="header__topbar-terms">Договор и безнал для юрлиц РФ · <?php echo esc_html( theme_opt( 'header_topbar_hours' ) ); ?> · заявки онлайн 24/7</p>
-		</div>
+<?php
+$theme_location = 'Производство: ' . theme_opt( 'address' ) . ' · поставки по всей России и в страны ЕАЭС';
+$theme_terms    = 'Договор и безнал для юрлиц РФ · ' . theme_opt( 'header_topbar_hours' ) . ' · заявки онлайн 24/7';
+$theme_phone    = theme_opt( 'phone' );
+$theme_tel      = $theme_phone ? 'tel:' . preg_replace( '/[^\d+]/', '', $theme_phone ) : '';
+$theme_email    = theme_opt( 'email' );
+?>
+<div class="header__topbar">
+	<div class="container header__topbar-inner">
+		<p class="header__topbar-location"><?php echo esc_html( $theme_location ); ?></p>
+		<p class="header__topbar-terms"><?php echo esc_html( $theme_terms ); ?></p>
 	</div>
+</div>
 
+<header class="header" data-header>
 	<div class="header__top">
 		<div class="container header__inner">
 			<a class="header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Beleksprint — на главную">
@@ -67,22 +74,7 @@
 				</div>
 			<?php endif; ?>
 
-			<div class="header__messengers">
-				<?php
-				$theme_messengers = [
-					'viber'    => [ 'Viber', 'viber.svg' ],
-					'whatsapp' => [ 'WhatsApp', 'whatsapp.svg' ],
-					'telegram' => [ 'Telegram', 'tg.svg' ],
-				];
-				foreach ( $theme_messengers as $theme_field => $theme_item ) :
-					$theme_url = theme_opt( $theme_field );
-					if ( ! $theme_url ) continue;
-					?>
-					<a href="<?php echo esc_url( $theme_url, [ 'http', 'https', 'viber', 'whatsapp' ] ); ?>" aria-label="<?php echo esc_attr( $theme_item[0] ); ?>" target="_blank" rel="noopener noreferrer">
-						<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/brand/' . $theme_item[1] ); ?>" alt="" width="38" height="38" decoding="async">
-					</a>
-				<?php endforeach; ?>
-			</div>
+			<?php get_template_part( 'template-parts/components/messengers', null, array( 'class' => 'header__messengers' ) ); ?>
 		</div>
 	</div>
 
@@ -96,6 +88,36 @@
 				'fallback_cb'    => false,
 			] );
 			?>
+
+			<div class="nav__contacts">
+				<?php if ( $theme_tel ) : ?>
+					<div class="manager manager--nav">
+						<?php if ( theme_opt( 'manager_photo' ) ) : ?>
+							<span class="manager__avatar">
+								<?php echo theme_image( theme_opt( 'manager_photo' ), 'manager__photo', '46px', false ); ?>
+							</span>
+						<?php endif; ?>
+						<div class="manager__info">
+							<a class="manager__phone" href="<?php echo esc_attr( $theme_tel ); ?>"><?php echo esc_html( $theme_phone ); ?></a>
+							<p class="manager__status">
+								<?php echo esc_html( theme_opt( 'manager_status' ) ); ?>
+								<?php if ( theme_opt( 'manager_callback' ) ) : ?>
+									· <a class="manager__callback" href="<?php echo esc_url( home_url( '/#contacts' ) ); ?>"><?php echo esc_html( theme_opt( 'manager_callback' ) ); ?></a>
+								<?php endif; ?>
+							</p>
+						</div>
+					</div>
+				<?php endif; ?>
+				<?php if ( $theme_email ) : ?>
+					<a class="nav__email" href="<?php echo esc_attr( 'mailto:' . $theme_email ); ?>">
+						<span class="header__icon"><?php echo theme_icon( 'icon-email' ); ?></span>
+						<?php echo esc_html( $theme_email ); ?>
+					</a>
+				<?php endif; ?>
+				<?php get_template_part( 'template-parts/components/messengers', null, array( 'class' => 'nav__messengers' ) ); ?>
+				<p class="nav__info"><?php echo esc_html( $theme_location ); ?></p>
+				<p class="nav__info"><?php echo esc_html( $theme_terms ); ?></p>
+			</div>
 		</div>
 	</nav>
 </header>

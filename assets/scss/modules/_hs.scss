@@ -2,10 +2,11 @@
 	@include mobile{
 		display: flex;
 		gap: 12px;
-		margin-inline: -16px;
-		padding: 0 16px 6px;
+		margin-inline: calc(var(--container-pad) * -1);
+		padding: 0 var(--container-pad) 6px;
 		overflow-x: auto;
 		scroll-snap-type: x mandatory;
+		scroll-padding-inline: var(--container-pad);
 		scrollbar-width: none;
 
 		> *{

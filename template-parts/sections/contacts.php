@@ -77,9 +77,13 @@ $tabs = array(
 				<p class="field__error" id="contacts-phone-error" hidden></p>
 			</div>
 
-			<div class="field field--dark" data-form-question>
-				<label class="field__label" for="contacts-question">Вопрос технологу</label>
-				<textarea class="field__input field__input--area" id="contacts-question" name="question" rows="3" placeholder="<?php echo esc_attr( get_field( 'contacts_question_placeholder' ) ); ?>"></textarea>
+			<div class="form__collapse" data-form-question>
+				<div class="form__collapse-inner">
+					<div class="field field--dark">
+						<label class="field__label" for="contacts-question">Вопрос технологу</label>
+						<textarea class="field__input field__input--area" id="contacts-question" name="question" rows="3" placeholder="<?php echo esc_attr( get_field( 'contacts_question_placeholder' ) ); ?>"></textarea>
+					</div>
+				</div>
 			</div>
 
 			<?php get_template_part( 'template-parts/components/consent', null, array( 'name' => 'consent', 'purpose' => 'и на связь по указанному номеру', 'dark' => true, 'class' => 'form__consent' ) ); ?>

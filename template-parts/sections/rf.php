@@ -33,7 +33,8 @@ $manager_photo = theme_opt( 'manager_photo' );
 
 		<div class="rf__bottom">
 			<div class="rf__fears">
-				<strong class="rf__fears-title"><?php echo esc_html( get_field( 'rf_fears_title' ) ); ?></strong>
+				<?php $fears_title = explode( ' — ', (string) get_field( 'rf_fears_title' ), 2 ); ?>
+				<strong class="rf__fears-title"><?php echo esc_html( $fears_title[0] ); ?><?php echo isset( $fears_title[1] ) ? ' <span class="rf__fears-tail">— ' . esc_html( $fears_title[1] ) . '</span>' : ''; ?></strong>
 				<?php foreach ( $fears as $fear ) : ?>
 					<div class="rf__fear">
 						<span class="rf__fear-icon"><?php echo theme_icon( 'icon-tick' ); ?></span>

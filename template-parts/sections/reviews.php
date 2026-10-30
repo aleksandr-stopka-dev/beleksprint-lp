@@ -17,15 +17,19 @@ $reviews = get_field( 'reviews' ) ?: array();
 			<div class="reviews__body" data-reviews>
 				<div class="reviews__scans">
 					<?php foreach ( $reviews as $index => $review ) : ?>
-						<div class="reviews__scan" data-review-panel="<?php echo esc_attr( $index ); ?>"<?php echo 0 === $index ? '' : ' hidden'; ?>>
-							<?php echo wp_get_attachment_image( $review['image'], 'review-2x', false, array( 'class' => 'reviews__scan-img', 'alt' => 'Благодарственное письмо: ' . $review['company'], 'sizes' => '(max-width: 860px) 250px, 400px', 'loading' => 0 === $index ? 'eager' : 'lazy' ) ); ?>
+						<div class="reviews__scan<?php echo 0 === $index ? ' is-active' : ''; ?>" data-review-panel="<?php echo esc_attr( $index ); ?>"<?php echo 0 === $index ? '' : ' inert'; ?>>
+							<button class="reviews__zoom" type="button" aria-label="<?php echo esc_attr( 'Открыть скан на весь экран: ' . $review['company'] ); ?>" data-review-zoom="<?php echo esc_url( add_query_arg( 'v', (int) @filemtime( get_attached_file( $review['image'] ) ), wp_get_attachment_image_url( $review['image'], 'full' ) ) ); ?>" data-review-alt="<?php echo esc_attr( 'Благодарственное письмо: ' . $review['company'] ); ?>">
+								<?php echo wp_get_attachment_image( $review['image'], 'review-2x', false, array( 'class' => 'reviews__scan-img', 'alt' => '', 'sizes' => '(max-width: 860px) 250px, 400px', 'loading' => 0 === $index ? 'eager' : 'lazy' ) ); ?>
+								<span class="reviews__zoom-icon" aria-hidden="true"></span>
+							</button>
 						</div>
 					<?php endforeach; ?>
 				</div>
 
 				<div class="reviews__info">
+					<div class="reviews__panels">
 					<?php foreach ( $reviews as $index => $review ) : ?>
-						<div class="reviews__panel" data-review-panel="<?php echo esc_attr( $index ); ?>"<?php echo 0 === $index ? '' : ' hidden'; ?>>
+						<div class="reviews__panel<?php echo 0 === $index ? ' is-active' : ''; ?>" data-review-panel="<?php echo esc_attr( $index ); ?>"<?php echo 0 === $index ? '' : ' inert'; ?>>
 							<?php echo theme_icon( 'icon-quote', 'reviews__quote-icon' ); ?>
 							<p class="reviews__quote"><?php echo esc_html( $review['quote'] ); ?></p>
 							<div class="reviews__author">
@@ -37,6 +41,7 @@ $reviews = get_field( 'reviews' ) ?: array();
 							</div>
 						</div>
 					<?php endforeach; ?>
+					</div>
 
 					<div class="reviews__thumbs" role="group" aria-label="Письма">
 						<?php foreach ( $reviews as $index => $review ) : ?>
@@ -49,4 +54,11 @@ $reviews = get_field( 'reviews' ) ?: array();
 			</div>
 		<?php endif; ?>
 	</div>
+
+	<dialog class="lightbox" aria-label="Скан письма" data-lightbox>
+		<button class="lightbox__close" type="button" aria-label="Закрыть" data-lightbox-close></button>
+		<div class="lightbox__stage" data-lightbox-stage>
+			<img class="lightbox__img" src="" alt="" data-lightbox-img>
+		</div>
+	</dialog>
 </section>

@@ -18,15 +18,19 @@
 }
 
 .header{
-	position: relative;
-	z-index: 10;
-	background: var(--gr-900);
+	display: contents;
 	color: var(--tx-inverse);
 	&__topbar{
+		position: relative;
+		z-index: 51;
 		background: var(--gr-950);
 		color: var(--tx-on-dark-muted);
 		font-size: 13px;
 		border-bottom: 1px solid var(--line-dark);
+
+		@include mobile{
+			display: none;
+		}
 	}
 	&__topbar-inner{
 		min-height: 38px;
@@ -43,7 +47,20 @@
 		}
 	}
 	&__top{
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: var(--gr-900);
 		border-bottom: 1px solid var(--gr-750);
+		transition: box-shadow .3s ease;
+
+		@media (prefers-reduced-motion: reduce){
+			transition: none;
+		}
+
+		&.is-stuck{
+			box-shadow: 0 12px 28px rgba(0, 0, 0, .35);
+		}
 	}
 	&__inner{
 		display: flex;
@@ -52,6 +69,10 @@
 		justify-content: space-between;
 		gap: 16px 20px;
 		padding-block: 14px;
+
+		@include mobile{
+			row-gap: 16px;
+		}
 	}
 	&__logo{
 		display: block;
@@ -157,6 +178,15 @@
 	display: flex;
 	align-items: center;
 	gap: 14px;
+
+	@include mobile{
+		display: none;
+	}
+	&--nav{
+		@include mobile{
+			display: flex;
+		}
+	}
 	&__avatar{
 		position: relative;
 		flex-shrink: 0;
@@ -259,12 +289,30 @@
 
 .nav{
 	border-bottom: 3px solid var(--green-600);
+	background: var(--gr-900);
+	color: var(--tx-inverse);
 	@media (max-width: 1200px){
-		display: none;
+		position: fixed;
+		inset: var(--nav-top, 0) 0 0;
+		z-index: 49;
+		overflow-y: auto;
+		border-top: 1px solid var(--gr-750);
 		border-bottom: 0;
+		visibility: hidden;
+		clip-path: inset(0 0 100% 0);
+		transition: clip-path .3s cubic-bezier(.65, 0, .35, 1), visibility 0s .3s;
+
 		.is-open &{
-			display: block;
-			border-top: 1px solid var(--gr-750);
+			visibility: visible;
+			clip-path: inset(0);
+			transition: clip-path .32s cubic-bezier(.65, 0, .35, 1), visibility 0s;
+		}
+
+		@media (prefers-reduced-motion: reduce){
+			transition: none;
+			.is-open &{
+				transition: none;
+			}
 		}
 	}
 	&__list{
@@ -298,5 +346,43 @@
 				width: 100%;
 			}
 		}
+	}
+	&__contacts{
+		display: none;
+		@include mobile{
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 14px;
+			padding-block: 20px 28px;
+			border-top: 1px solid var(--gr-750);
+		}
+	}
+	&__email{
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		font-family: var(--ff-head);
+		font-size: 16px;
+		font-weight: 700;
+		color: var(--tx-inverse);
+		word-break: break-word;
+	}
+	&__messengers{
+		display: flex;
+		gap: 10px;
+		a{
+			line-height: 0;
+		}
+		img{
+			display: block;
+			width: 44px;
+			height: 44px;
+		}
+	}
+	&__info{
+		font-size: 13px;
+		line-height: 1.5;
+		color: var(--tx-on-dark-muted);
 	}
 }

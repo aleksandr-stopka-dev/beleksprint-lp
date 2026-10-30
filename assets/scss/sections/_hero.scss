@@ -1,7 +1,7 @@
 .hero{
 	--glow: radial-gradient(ellipse 680px 600px at 77% 52%, rgba(74, 140, 42, .42), rgba(74, 140, 42, 0) 70%), radial-gradient(ellipse 900px 600px at 100% 0%, rgba(255, 255, 255, .05), rgba(255, 255, 255, 0) 70%);
 
-	padding-block: fluid(40, 72) fluid(48, 80);
+	padding-block: fluid(48, 72) fluid(48, 80);
 	&__inner{
 		display: grid;
 		grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);

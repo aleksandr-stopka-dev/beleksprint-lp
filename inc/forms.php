@@ -135,7 +135,13 @@ function theme_handle_form() {
 		theme_form_error( 'Не удалось отправить. Позвоните нам.', 500 );
 	}
 
-	wp_send_json_success( array( 'message' => $success ) );
+	$response = array( 'message' => $success );
+	if ( 'contacts' === $form_id ) {
+		theme_thanks_issue();
+		$response['redirect'] = theme_thanks_url();
+	}
+
+	wp_send_json_success( $response );
 }
 add_action( 'wp_ajax_theme_form', 'theme_handle_form' );
 add_action( 'wp_ajax_nopriv_theme_form', 'theme_handle_form' );

@@ -1,3 +1,4 @@
+import { attachPhoneMask } from '../core/phone-mask.js';
 import { markStart, sendForm } from '../core/send-form.js';
 
 const showError = (field, text) => {
@@ -27,6 +28,7 @@ const initContactsForm = (form) => {
     const status = form.querySelector('[data-form-status]');
     const typeInput = form.elements.type;
     markStart(form, form.elements.started);
+    attachPhoneMask(form.elements.phone);
     const labels = { question: 'Отправить вопрос', call: 'Жду звонка' };
     const requiredFields = [...form.querySelectorAll('.field:has(input[required])')];
 
@@ -35,7 +37,9 @@ const initContactsForm = (form) => {
             button.setAttribute('aria-pressed', String(button.dataset.formType === type));
         });
         typeInput.value = type;
-        question.hidden = type !== 'question';
+        const open = type === 'question';
+        question.classList.toggle('is-collapsed', !open);
+        question.inert = !open;
         submit.textContent = labels[type];
         status.hidden = true;
     };
@@ -73,6 +77,12 @@ const initContactsForm = (form) => {
         submit.disabled = true;
         form.setAttribute('aria-busy', 'true');
         const result = await sendForm(form.getAttribute('action'), new FormData(form));
+
+        if (result.ok && result.redirect) {
+            window.location.assign(result.redirect);
+            return;
+        }
+
         submit.disabled = false;
         form.removeAttribute('aria-busy');
 

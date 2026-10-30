@@ -33,6 +33,7 @@ $count = array_count_values( array_column( $items, 'category' ) );
 			</div>
 		</div>
 
+		<div class="catalog__panels">
 		<?php
 		$first = true;
 		foreach ( $tabs as $key => $label ) :
@@ -49,10 +50,6 @@ $count = array_count_values( array_column( $items, 'category' ) );
 						<div class="catalog__media">
 							<?php echo wp_get_attachment_image( $item['image'], 'full', false, array( 'class' => 'catalog__img', 'alt' => '', 'loading' => $index < 3 ? 'eager' : 'lazy' ) ); ?>
 							<span class="chip chip--tag"><?php echo esc_html( $item['tag'] ); ?></span>
-							<span class="chip chip--sign">
-								<?php echo theme_icon( 'icon-honest-sign' ); ?>
-								Честный знак
-							</span>
 						</div>
 						<div class="catalog__body">
 							<h3 class="text-h3 catalog__title"><?php echo esc_html( $item['title'] ); ?></h3>
@@ -76,6 +73,7 @@ $count = array_count_values( array_column( $items, 'category' ) );
 			$first = false;
 		endforeach;
 		?>
+		</div>
 
 		<div class="catalog__note">
 			<span class="catalog__note-text">

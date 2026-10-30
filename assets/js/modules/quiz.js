@@ -1,4 +1,7 @@
+import { attachPhoneMask } from '../core/phone-mask.js';
 import { markStart, sendForm } from '../core/send-form.js';
+
+const ADVANCE_DELAY = 320;
 
 const initQuiz = () => {
     const quiz = document.querySelector('[data-quiz]');
@@ -25,6 +28,7 @@ const initQuiz = () => {
 
     const lastStep = steps.length - 1;
     const choiceStep = { product: 0, quantity: 1, print: 2 };
+    let advanceTimer = 0;
 
     const isStepReady = (step) => {
         if (step === 0) return selection.product !== null;
@@ -53,7 +57,10 @@ const initQuiz = () => {
 
     const renderStep = () => {
         steps.forEach((node) => {
-            node.hidden = Number(node.dataset.quizStep) !== state.step;
+            const index = Number(node.dataset.quizStep);
+            node.classList.toggle('is-active', index === state.step);
+            node.classList.toggle('is-before', index < state.step);
+            node.inert = index !== state.step;
         });
         bars.forEach((bar) => {
             const index = Number(bar.dataset.quizBar);
@@ -67,15 +74,45 @@ const initQuiz = () => {
         renderSummary();
     };
 
-    const goTo = (step) => {
+    const goTo = (step, focus = true) => {
+        clearTimeout(advanceTimer);
         state.step = Math.min(Math.max(step, 0), lastStep);
         renderStep();
+        if (focus) steps[state.step].querySelector('.quiz__title')?.focus({ preventScroll: true });
     };
 
     const selectOption = (kind, value) => {
         selection[kind] = value;
         renderOptions(kind);
         renderStep();
+        clearTimeout(advanceTimer);
+        advanceTimer = setTimeout(() => {
+            if (state.step === choiceStep[kind]) goTo(state.step + 1);
+        }, ADVANCE_DELAY);
+    };
+
+    const contactField = contactInput.closest('.field');
+
+    const setContactInvalid = (invalid) => {
+        contactField.classList.toggle('field--error', invalid);
+        if (invalid) contactInput.setAttribute('aria-invalid', 'true');
+        else contactInput.removeAttribute('aria-invalid');
+    };
+
+    contactInput.addEventListener('input', () => setContactInvalid(false));
+
+    const refreshMask = attachPhoneMask(contactInput, (value) => state.channel === 'wa' || (state.channel === 'tg' && /^[\s+\d(]/.test(value)));
+
+    const channelsBox = channelButtons[0]?.parentElement;
+
+    const moveChannelThumb = () => {
+        const active = channelButtons.find((item) => item.getAttribute('aria-pressed') === 'true');
+        if (!channelsBox || !active || !active.offsetWidth) return;
+        channelsBox.style.setProperty('--thumb-x', `${active.offsetLeft}px`);
+        channelsBox.style.setProperty('--thumb-y', `${active.offsetTop}px`);
+        channelsBox.style.setProperty('--thumb-w', `${active.offsetWidth}px`);
+        channelsBox.style.setProperty('--thumb-h', `${active.offsetHeight}px`);
+        channelsBox.classList.add('is-ready');
     };
 
     const applyChannel = (button) => {
@@ -85,10 +122,20 @@ const initQuiz = () => {
         });
         contactLabel.textContent = button.dataset.fieldLabel;
         contactInput.placeholder = button.dataset.fieldPlaceholder;
+        contactInput.inputMode = state.channel === 'mail' ? 'email' : state.channel === 'wa' ? 'tel' : 'text';
+        refreshMask();
+        moveChannelThumb();
     };
+
+    if (channelsBox) {
+        moveChannelThumb();
+        setTimeout(() => channelsBox.classList.add('is-animated'), 50);
+        new ResizeObserver(moveChannelThumb).observe(channelsBox);
+    }
 
     const submit = async (button) => {
         error.hidden = true;
+        setContactInvalid(false);
         button.disabled = true;
         quiz.setAttribute('aria-busy', 'true');
 
@@ -109,12 +156,16 @@ const initQuiz = () => {
         button.disabled = false;
 
         if (result.ok) {
-            goTo(lastStep);
+            goTo(lastStep, false);
             return;
         }
-        error.textContent = result.errors.contact ?? result.message;
+        if (result.errors.contact) {
+            setContactInvalid(true);
+            contactInput.focus();
+            return;
+        }
+        error.textContent = result.message;
         error.hidden = false;
-        if (result.errors.contact) contactInput.focus();
     };
 
     const reset = () => {
@@ -125,7 +176,8 @@ const initQuiz = () => {
         if (consent) consent.checked = false;
         contactInput.value = '';
         error.hidden = true;
-        goTo(0);
+        setContactInvalid(false);
+        goTo(0, false);
     };
 
     quiz.addEventListener('click', (event) => {
@@ -170,7 +222,7 @@ const initQuiz = () => {
         if (!product) return;
         selection.product = product.dataset.value;
         renderOptions('product');
-        goTo(1);
+        goTo(1, false);
         quiz.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 

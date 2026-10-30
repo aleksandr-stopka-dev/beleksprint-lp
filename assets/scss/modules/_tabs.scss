@@ -1,4 +1,6 @@
 .tabs{
+	position: relative;
+	isolation: isolate;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 4px;
@@ -9,8 +11,36 @@
 	@include mobile{
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0;
 		width: 100%;
 		border-radius: 16px;
+	}
+	&::before{
+		content: '';
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		width: var(--thumb-w, 0);
+		height: var(--thumb-h, 0);
+		border-radius: var(--r-pill);
+		background: var(--gr-900);
+		opacity: 0;
+		transform: translate(var(--thumb-x, 0), var(--thumb-y, 0));
+
+		@include mobile{
+			border-radius: 12px;
+		}
+	}
+	&.is-ready::before{
+		opacity: 1;
+	}
+	&.is-animated::before{
+		transition: transform .4s cubic-bezier(.22, .8, .3, 1), width .4s cubic-bezier(.22, .8, .3, 1), height .4s cubic-bezier(.22, .8, .3, 1);
+
+		@media (prefers-reduced-motion: reduce){
+			transition: none;
+		}
 	}
 	&__tab{
 		display: inline-flex;
@@ -25,14 +55,13 @@
 		font-size: 15px;
 		font-weight: 700;
 		cursor: pointer;
-		transition: background-color var(--transition), color var(--transition);
+		transition: color .3s ease;
 
 		&:hover{
 			color: var(--gr-900);
 		}
 
 		&[aria-selected='true']{
-			background: var(--gr-900);
 			color: var(--tx-inverse);
 		}
 
@@ -46,6 +75,9 @@
 		@media (prefers-reduced-motion: reduce){
 			transition: none;
 		}
+	}
+	&:not(.is-ready) &__tab[aria-selected='true']{
+		background: var(--gr-900);
 	}
 	&__count{
 		font-size: 12px;

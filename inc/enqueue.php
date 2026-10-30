@@ -21,3 +21,15 @@ add_action( 'wp_head', function() {
         printf( '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n", esc_url( $theme_uri . $font ) );
     }
 }, 1 );
+
+add_action( 'wp_head', function() {
+    $dir   = get_template_directory() . '/assets/js';
+    $uri   = get_template_directory_uri() . '/assets/js';
+    $imports = [];
+    foreach ( new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir, FilesystemIterator::SKIP_DOTS ) ) as $file ) {
+        if ( 'js' !== $file->getExtension() ) continue;
+        $relative = str_replace( '\\', '/', substr( $file->getPathname(), strlen( $dir ) ) );
+        $imports[ $uri . $relative ] = $uri . $relative . '?ver=' . $file->getMTime();
+    }
+    printf( '<script type="importmap">%s</script>' . "\n", wp_json_encode( [ 'imports' => $imports ], JSON_UNESCAPED_SLASHES ) );
+}, 1 );

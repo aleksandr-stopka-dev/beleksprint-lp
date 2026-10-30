@@ -9,6 +9,7 @@
 	font-weight: 700;
 	letter-spacing: .12em;
 	text-transform: uppercase;
+	margin-left: calc(var(--fs-h2) * .05);
 	color: var(--tx-muted);
 	&--dark{
 		color: var(--tx-on-dark-muted);
